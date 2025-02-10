@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <%- include('../layout/headSection') %>
+
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <div id="main-wrapper">
+      <%- include('../layout/header') %> <%- include('../layout/sidebar') %>
+
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Dashboard</h4>
+              <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Library
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title m-b-0">Static Table</h5>
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Category name</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% category.forEach((ele,index)=>{ %> 
+                      <tr>
+                        <td><%= index+1  %></td>
+                        <td><%= ele.cat_name %></td>
+                        <td>
+                          <a href="api/delete/<%= ele._id %>" class="btn btn-outline-danger">delete</a>
+                          <a href="/updateCategory?id=<%= ele._id %>" class="btn btn-outline-warning">Update</a>
+                        
+                        </td>
+                      </tr>
+                      <% }) %>
+                  
+                  </tbody>
+                </table>
+              </div>
+                <div class="card-body">
+                  <h5 class="card-title m-b-0">Static Table With Checkboxes</h5>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>
+                          <label class="customcheckbox m-b-20">
+                            <input type="checkbox" id="mainCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <th scope="col">Rendering engine</th>
+                        <th scope="col">Browser</th>
+                        <th scope="col">Platform(s)</th>
+                        <th scope="col">Engine version</th>
+                      </tr>
+                    </thead>
+                    <tbody class="customtable">
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 4.0</td>
+                        <td>Win 95+</td>
+                        <td>4</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 5.0</td>
+                        <td>Win 95+</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 4.0</td>
+                        <td>Win 95+</td>
+                        <td>4</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 5.0</td>
+                        <td>Win 95+</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 5.5</td>
+                        <td>Win 95+</td>
+                        <td>5.5</td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <label class="customcheckbox">
+                            <input type="checkbox" class="listCheckbox" />
+                            <span class="checkmark"></span>
+                          </label>
+                        </th>
+                        <td>Trident</td>
+                        <td>Internet Explorer 6</td>
+                        <td>Win 98+</td>
+                        <td>6</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer text-center">
+          All Rights Reserved by Matrix-admin. Designed and Developed by
+          <a href="https://wrappixel.com">WrapPixel</a>.
+        </footer>
+      </div>
+    </div>
+
+    <%- include('../layout/jsLink') %>
+  </body>
+</html>
