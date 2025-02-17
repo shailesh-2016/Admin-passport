@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <%- include('../layout/headSection') %>
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+    <div id="main-wrapper">
+        <%- include('../layout/header') %> <%- include('../layout/sidebar') %>
+        <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Sub Category</h4>
+              <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Library
+                    </li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <table class="table table-active table-bordered table-hover table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Category name</th>
+                      <th scope="col">Sub category</th>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Product price</th>
+                      <th scope="col">Product Image</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% product.forEach((ele,index)=>{ %> 
+                      <tr>
+                        <td><%= index+1  %></td>
+                        <td><%= ele?.category?.cat_name %></td>
+                        <td><%= ele?.sub_category?.sub_category %></td>
+                        <td><%= ele?.p_name %></td>
+                        <td><%= ele?.p_price %></td>
+                        <td><img src="uploads/product/<%= ele.p_image %>" alt="" width="100"></td>
+
+    
+                        <td>
+                          <a href="/api/addProduct/delete/<%= ele._id %>" class="btn btn-outline-danger">delete</a>
+                          <a href="/updateProduct?id=<%= ele._id %>" class="btn btn-outline-warning">Update</a>
+                        </td>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+    </div>
+    <%- include('../layout/jsLink') %>
+  </body>
+</html>

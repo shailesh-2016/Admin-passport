@@ -9,6 +9,7 @@ const router = require("./routes/cat_route");
 const View = require("./routes/view.route");
 const Admin = require("./routes/admin.route");
 const subCategory=require("./routes/subCat.route")
+const Product=require("./routes/product.route")
 const passport=require("passport")
 const passportAuth=require("./config/passport")
 passportAuth(passport)
@@ -19,7 +20,9 @@ require("./config/db").main();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
-app.use("/profile", express.static("uploads"));
+// app.use("/profile", express.static("uploads"));
+app.use("/uploads/product", express.static("uploads/product"));
+
 
 app.use(cookieParser("test1"));
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
@@ -32,5 +35,6 @@ app.use("/api", router);
 app.use("/", View);
 app.use("/api/admin", Admin);
 app.use("/api/subCategory", subCategory);
+app.use("/api/addProduct", Product);
 
 app.listen(PORT, () => console.log(`Example app listening on PORT ${PORT}!`));
