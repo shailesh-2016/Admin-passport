@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <%- include('../layout/headSection') %>
+  <body>
+    <div class="preloader">
+      <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+      </div>
+    </div>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+      <%- include('../layout/header') %>
+      <%- include('../layout/sidebar') %>
+
+      <div class="page-wrapper">
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+              <div class="card shadow-lg">
+                <div class="card-body">
+                  <h4 class="card-title text-center mb-4">Add Product</h4>
+                  
+                  <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/api/addProduct/update/<%= product?._id %>">
+                    <div class="mb-3">
+                      <label for="category" class="form-label">Category Name</label>
+                      <select name="category" class="form-control" 
+                        onchange="window.location.href= `/updateProduct?id=<%= product?._id %>&cat_id=${this.value}`">
+                        <option value="">-- Select Category --</option>
+                        <% categories.forEach((cat) => { %>
+                          <option value="<%= cat._id %>" <%= cat._id.toString() == selectedCat ? "selected" : "" %>>
+                            <%= cat.cat_name %>
+                          </option>
+                        <% }) %>
+                      </select>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="sub_category" class="form-label">Sub Category Name</label>
+                      <select name="sub_category" class="form-control">
+                        <option value="">-- Select SubCategory --</option>
+                        <% if (Subcategories) { %>
+                          <% Subcategories.forEach((cat) => { %>
+                            <option value="<%= cat._id %>" <%= cat._id.toString() == (product?.sub_category?._id.toString() || "") ? "selected" : "" %>>
+                              <%= cat.sub_category %>
+                            </option>
+                          <% }) %>
+                        <% } %>
+                      </select>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="p_name" class="form-label">Product Name</label>
+                      <input type="text" class="form-control" id="p_name" name="p_name" value="<%= product?.p_name%>" />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="p_price" class="form-label">Product Price</label>
+                      <input type="number" class="form-control" id="p_price" name="p_price" value="<%= product?.p_price%>" />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="p_image" class="form-label">Product Image</label>
+                      <input type="file" class="form-control" id="p_image" name="p_image" value="<%= product?.p_image%>" />
+                    </div>
+
+                    <div class="text-center mt-4">
+                      <button class="btn btn-primary px-4">Submit</button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer text-center mt-4">
+          All Rights Reserved by Matrix-admin. Designed and Developed by
+          <a href="https://www.wrappixel.com">WrapPixel</a>.
+        </footer>
+      </div>
+    </div>
+
+    <%- include('../layout/jsLink') %>
+  </body>
+</html>

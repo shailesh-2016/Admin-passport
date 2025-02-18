@@ -109,20 +109,46 @@ router.get("/addProduct", async (req, res) => {
   try {
     const categories = await Category.find();
     var Subcategories;
-    var {cat_id}=req?.query
-    const selectedCat=req?.query.cat_id || ""
-    if(cat_id){
-      Subcategories = await SubCategory.find({category:cat_id});  
-// console.log(Subcategories)
+    var { cat_id } = req?.query;
+    const selectedCat = req?.query.cat_id || "";
+    if (cat_id) {
+      Subcategories = await SubCategory.find({ category: cat_id });
+      // console.log(Subcategories)
     }
-    res.render("pages/addProduct", { categories, Subcategories,selectedCat });
+    res.render("pages/addProduct", { categories, Subcategories, selectedCat });
   } catch (error) {
     console.log(error);
   }
 });
 
-router.get("/viewProduct",async(req,res)=>{
-  const product=await Product.find().populate('category').populate('sub_category')
-res.render("pages/viewProduct",{product})})
+router.get("/viewProduct", async (req, res) => {
+  const product = await Product.find()
+    .populate("category")
+    .populate("sub_category");
+  res.render("pages/viewProduct", { product });
+});
+
+router.get("/updateProduct", async (req, res) => {
+  const {id,cat_id}=req.query
+  const categories = await Category.find();
+  var Subcategories;
+  const product=await Product.findById(id).populate("category").populate("sub_category")
+
+
+  if (cat_id) {
+    Subcategories = await SubCategory.find({ category:cat_id });
+  }else{
+    Subcategories = await SubCategory.find({ category:product.category._id });
+  }
+  // console.log(Subcategories)
+  // console.log(product)
+  const selectedCat= cat_id || product.category._id
+  // console.log('selectedCat: ', selectedCat);
+
+
+  res.render("pages/updateProduct",{product,categories, Subcategories, selectedCat})
+ });
 
 module.exports = router;
+
+
