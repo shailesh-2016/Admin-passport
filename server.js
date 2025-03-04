@@ -37,4 +37,4 @@ app.use("/api/admin", Admin);
 app.use("/api/subCategory", subCategory);
 app.use("/api/addProduct", Product);
 
-app.listen(PORT, () => console.log(`Example app listening on PORT ${PORT}!`));
+app.listen(PORT, () => console.log(`Example app listening on PORT http://localhost:${PORT}`));

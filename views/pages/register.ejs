@@ -35,7 +35,6 @@
               /></span>
             </div>
 
-
             <% if (message) { %>
               <div
                 class="alert alert-primary alert-dismissible fade show"
@@ -117,7 +116,7 @@
                     <input
                       type="text"
                       class="form-control form-control-lg"
-                      placeholder=" Confirm Password"
+                      placeholder="Confirm Password"
                       aria-label="Password"
                       aria-describedby="basic-addon1"
                       required
@@ -128,10 +127,14 @@
               <div class="row border-top border-secondary">
                 <div class="col-12">
                   <div class="form-group">
-                    <div class="p-t-20">
-                      <button class="btn btn-block btn-lg btn-info">
-                        Sign Up
-                      </button>
+                    <div class="p-t-20 d-flex justify-content-between">
+                      <button class="btn btn-info btn-lg">Sign Up</button>
+                      <a
+                        href="/login"
+                        class="btn btn-primary btn-lg"
+                      >
+                        Login
+                      </a>
                     </div>
                   </div>
                 </div>

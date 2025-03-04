@@ -12,7 +12,7 @@
       sizes="16x16"
       href="assets/images/favicon.png"
     />
-    <title>Matrix Template - The Ultimate Multipurpose admin template</title>
+    <title>Matrix Template - The Ultimate Multipurpose Admin Template</title>
     <link href="dist/css/style.min.css" rel="stylesheet" />
   </head>
 
@@ -30,21 +30,20 @@
         <div class="auth-box bg-dark border-top border-secondary">
           <div id="loginform">
             <div class="text-center p-t-20 p-b-20">
-              <span class="db"
-                ><img src="assets/images/logo.png" alt="logo"
-              /></span>
+              <span class="db">
+                <img src="assets/images/logo.png" alt="logo" />
+              </span>
             </div>
 
             <% if (message[0]) { %>
-              <div
-                class="alert alert-primary alert-dismissible fade show"
-                role="alert"
-              >
-                <%= message[0] %>
-              </div>
+            <div
+              class="alert alert-primary alert-dismissible fade show"
+              role="alert"
+            >
+              <%= message[0] %>
+            </div>
             <% } %>
-            
-            
+
             <form
               class="form-horizontal m-t-20"
               method="post"
@@ -80,7 +79,7 @@
                       ></span>
                     </div>
                     <input
-                      type="text"
+                      type="password"
                       class="form-control form-control-lg"
                       placeholder="Password"
                       name="password"
@@ -104,6 +103,9 @@
                       </button>
                       <button class="btn btn-success float-right" type="submit">
                         Login
+                      </button>
+                      <button class="btn btn-primary float-right me-2" id="to-register" type="button">
+                        Register
                       </button>
                     </div>
                   </div>
@@ -143,13 +145,11 @@
                       class="btn btn-success"
                       href="#"
                       id="to-login"
-                      
                       >Back To Login</a
                     >
                     <button
                       class="btn btn-info float-right"
                       type="submit"
-                      
                     >
                       Recover
                     </button>
@@ -167,9 +167,9 @@
     <script>
       $('[data-toggle="tooltip"]').tooltip();
       $(".preloader").fadeOut();
-      // ==============================================================
-      // Login and Recover Password
-      // ==============================================================
+      // ============================================================== 
+      // Login and Recover Password 
+      // ============================================================== 
       $("#to-recover").on("click", function () {
         $("#loginform").slideUp();
         $("#recoverform").fadeIn();
@@ -178,6 +178,8 @@
         $("#recoverform").hide();
         $("#loginform").fadeIn();
       });
+      $("#to-register").click(function () {
+        window.location.href = "/register";      });
     </script>
   </body>
 </html>
