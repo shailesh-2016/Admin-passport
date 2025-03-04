@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const MONGO_URL = "mongodb://localhost:27017/Passport";
+const MONGO_URL = "mongodb+srv://snmodi2020:Snmodi2020@projects.xeh2g.mongodb.net/";
 
 exports.main = () => {
   mongoose
