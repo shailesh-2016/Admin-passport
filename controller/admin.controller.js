@@ -10,26 +10,27 @@ exports.register = async (req, res) => {
 
     if (password !== confirm_password) {
       req.flash("info", "Passwords do not match!");
-      return res.redirect("/register"); 
-    }
-
-    const existEmail = await Admin.findOne({ email: email }).countDocuments().exec();
-
-    if (existEmail > 0) {
-      req.flash("info", "Email already exists");
       return res.redirect("/register");
+    } else {
+      const existEmail = await Admin.findOne({ email: email })
+        .countDocuments()
+        .exec();
+
+      if (existEmail > 0) {
+        req.flash("info", "Email already exists");
+        return res.redirect("/register");
+      }
+
+      const hash = await plainToHash(password);
+      await Admin.create({ username, email, password: hash });
+
+      req.flash("info", "Registration successful");
+      res.redirect("/login");
     }
-
-    const hash = await plainToHash(password);
-    await Admin.create({ username, email, password: hash });
-
-    req.flash("info", "Registration successful");
-    res.redirect("/login");
   } catch (err) {
     res.json(err);
   }
 };
-
 
 exports.login = async (req, res) => {
   try {
