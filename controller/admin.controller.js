@@ -5,27 +5,31 @@ const { plainToHash, hashToPlain } = require("../utils/password");
 const otpGenerator = require("otp-generator");
 
 exports.register = async (req, res) => {
-  // console.log(req.body)
   try {
     const { username, email, password, confirm_password } = req.body;
-    const existEmail = await Admin.findOne({ email: email })
-      .countDocuments()
-      .exec();
-    if (existEmail > 0) {
-      req.flash("info", "email already exist");
-      res.redirect("/register");
-    } else {
-      // await Admin.create({ username, email, password, confirm_password });
-      const hash = await plainToHash(password);
-      await Admin.create({ username, email, password: hash, confirm_password });
-      req.flash("info", "Registration success");
-      res.redirect("/login");
-      // console.log(hash)
+
+    if (password !== confirm_password) {
+      req.flash("info", "Passwords do not match!");
+      return res.redirect("/register"); 
     }
+
+    const existEmail = await Admin.findOne({ email: email }).countDocuments().exec();
+
+    if (existEmail > 0) {
+      req.flash("info", "Email already exists");
+      return res.redirect("/register");
+    }
+
+    const hash = await plainToHash(password);
+    await Admin.create({ username, email, password: hash });
+
+    req.flash("info", "Registration successful");
+    res.redirect("/login");
   } catch (err) {
     res.json(err);
   }
 };
+
 
 exports.login = async (req, res) => {
   try {
