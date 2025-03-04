@@ -88,7 +88,7 @@ router.get("/addSubCategory", async (req, res) => {
 router.get("/viewSubCategory", async (req, res) => {
   try {
     const Subcategories = await SubCategory.find().populate("category");
-    res.render("pages/viewSubcategory", { Subcategories });
+    res.render("pages/viewSubCategory", { Subcategories });
   } catch (error) {
     console.log(error);
   }
