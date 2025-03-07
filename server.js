@@ -20,7 +20,7 @@ require("./config/db").main();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
-// app.use("/profile", express.static("uploads"));
+app.use("/profile", express.static("uploads"));
 app.use("/uploads/product", express.static("uploads/product"));
 
 
